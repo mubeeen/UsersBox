@@ -1,0 +1,65 @@
+In UserBox/src/Components/User.js
+
+Below is the code with an issue
+***************************************************************************************************************************************
+import React, {useState, useEffect} from 'react';
+
+function User({match})
+{
+    useEffect(()=> {
+        fetchUserInfo();
+        console.log(match);
+    },[]);
+    
+    const [item,setItem] = useState({});
+
+    const fetchUserInfo = async () => {
+
+        const fetchUserInfo = await fetch
+        (
+        `https://reqres.in/api/users/${match.params.id}`
+        );
+        const item = await fetchUserInfo.json();
+        setItem(item);
+        console.log(item);                            /*The code is working fine and fetching data from api, it is also displaying the 
+                                                        fetched data on console but whenever I try to render (return) the fetched data
+                                                        it throws a weird error. Im totally unable to resolve it.... */
+    };
+    return (
+        <div>
+            <ul>            
+                {
+                    item.map(user=>                     <-----//Maybe the error is because of this map function,
+                    <li key={user.id}>                  
+                        {user.first_name} 
+                        {user.last_name} 
+                    </li>
+                    )
+                }
+            </ul>
+        </div>
+    );
+}
+
+  
+
+export default User
+
+***************************************************************************************************************************************
+This is the error...
+***************************************************************************
+TypeError: item.map is not a function
+User
+http://localhost:3000/static/js/main.chunk.js:402:11
+
+  399 |     lineNumber: 24,
+  400 |     columnNumber: 13
+  401 |   }
+> 402 | }, item.map(user => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      |         ^  403 |   key: user.id,
+  404 |   __self: this,
+  405 |   __source: {
+
+
+
+************************************************************************
