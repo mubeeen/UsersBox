@@ -3,7 +3,6 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Navbar from './Components/Navbar';
-import PersonList from './Components/UsersRecord';
 
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import UsersRecord from './Components/UsersRecord';
