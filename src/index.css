@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.profile-name
+{
+  font-size:40px;
+}
+.profile-email
+{
+  font-size:20px;
+}
+.profile-img
+{
+  border-radius: 50%;
+}
+div.profile-container
+{
+  background: rgba(109,109,109,0.3);
+}

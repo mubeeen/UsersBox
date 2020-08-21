@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom';
+import Table from 'react-bootstrap/Table';
 
-function UsersRecord()
+
+function UsersRecord(prop)
 {
     const [users,setUsers] = useState([])
-    var LINK_ = `https://reqres.in/api/users?page=2`;
+    var LINK_ = `https://reqres.in/api/users?page=${prop.prop}`;
+    console.log(LINK_)
     useState(() => {
         axios.get(LINK_)
         .then(res=> {
@@ -18,20 +21,31 @@ function UsersRecord()
 
     return (
         <div>
-            <ul>
+            <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Profile</th>
+                </tr>
+            </thead>
+            <tbody>
                 {
-                    users.map(user=> 
-                    <li key={user.id}> 
-                        {user.first_name} 
-                        {user.last_name} 
-                        <Link to={`/users/${user.id}`}> 
-                            <a>View Profile</a> 
-                        </Link>
-                    </li>
-                    )
+                    users.map(user =>(
+                        <React.Fragment>
+                            <tr>
+                                <td>{user.first_name} {user.last_name}</td>
+                                <td>
+                                <Link to={`/users/${user.id}`}> 
+                                        <a className="aTagLink">View Profile</a> 
+                                </Link>
+                                </td>
+                            </tr>
+                        </React.Fragment>
+                    ))
                 }
-            </ul>
-        </div>
+            </tbody>
+        </Table>         
+    </div>
     )
 }
 
